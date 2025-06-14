@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${car.model + ' Details'}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 th:text="${car.model + ' Details'}"></h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Manufacturer:</strong> <span th:text="${car.manufacturer.name}"></span></p>
+                        <p><strong>Year:</strong> <span th:text="${car.year}"></span></p>
+                        <p><strong>Color:</strong> <span th:text="${car.color}"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Price:</strong> <span th:text="${'$' + #numbers.formatDecimal(car.price, 1, 2)}"></span></p>
+                        <p><strong>VIN:</strong> <span th:text="${car.vin}"></span></p>
+                        <p><strong>Body Type:</strong> <span th:text="${car.bodyType}"></span></p>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h4>Engine Specifications</h4>
+                    <div class="row" th:if="${car.engine} != null">
+                        <div class="col-md-6">
+                            <p><strong>Engine Code:</strong> <span th:text="${car.engine.engineCode}"></span></p>
+                            <p><strong>Displacement:</strong> <span th:text="${car.engine.displacement + ' cc'}"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Horsepower:</strong> <span th:text="${car.engine.horsepower}"></span></p>
+                            <p><strong>Fuel Type:</strong> <span th:text="${car.engine.fuelType}"></span></p>
+                        </div>
+                    </div>
+                    <div th:unless="${car.engine} != null" class="alert alert-warning">
+                        No engine information available
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a th:href="@{/car/update/{id}(id=${car.id})}" class="btn btn-warning">Edit</a>
+                <a th:href="@{/car/remove/{id}(id=${car.id})}" class="btn btn-danger">Delete</a>
+                <a href="/car/show/all" class="btn btn-secondary">Back to Inventory</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
