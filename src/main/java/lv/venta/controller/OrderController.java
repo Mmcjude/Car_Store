@@ -41,14 +41,14 @@ public class OrderController {
     }
 
     // Show form to add a new order
-    @GetMapping("/add")
+    @GetMapping("/add")  //http://localhost:8080/orders/add
     public String showAddOrderForm(Model model) {
         try {
             Order order = new Order();
             order.setOrderDate(LocalDate.now());  // default order date = today
             model.addAttribute("order", order);  
             model.addAttribute("customers", carShopService.selectAllCustomers());
-            return "order-add";
+            return "order-add-page";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "redirect:/orders";

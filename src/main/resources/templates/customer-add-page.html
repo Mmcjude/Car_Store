@@ -2,49 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Add New Customer</title>
+    <title>Add New Order</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
-<div class="container mt-5">
-    <h2>Add New Customer</h2>
+<body class="bg-light">
 
+<div class="container mt-4">
+    <h1 class="mb-4">Add New Order</h1>
+
+    <!-- Error message display -->
     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-    <form th:action="@{/shop/customer/add}" th:object="${customer}" method="post">
+    <!-- Add Order Form -->
+    <form th:action="@{/orders/add}" th:object="${order}" method="post" class="card p-4 shadow">
+
         <div class="mb-3">
-            <label for="firstName" class="form-label">First Name</label>
-            <input type="text" id="firstName" th:field="*{firstName}" class="form-control" required />
+            <label for="orderDate" class="form-label">Order Date:</label>
+            <input type="date" id="orderDate" th:field="*{orderDate}" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" id="lastName" th:field="*{lastName}" class="form-control" required />
+            <label for="customer" class="form-label">Customer:</label>
+            <select id="customer" name="customerId" class="form-select">
+                <option disabled selected value="">-- Select Customer --</option>
+                <option th:each="cust : ${customers}"
+                        th:value="${cust.id}"
+                        th:text="${cust.firstName + ' ' + cust.lastName}">
+                </option>
+            </select>
         </div>
 
-        <div class="mb-3">
-            <label for="personalCode" class="form-label">Personal Code</label>
-            <input type="text" id="personalCode" th:field="*{personalCode}" class="form-control" pattern="[0-9]{6}-[0-9]{5}" required />
-            <small class="form-text text-muted">Format: 6 digits - 5 digits (e.g. 123456-78901)</small>
-        </div>
-
-        <div class="mb-3">
-            <label for="city" class="form-label">City</label>
-            <input type="text" id="city" th:field="*{city}" class="form-control" required />
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" th:field="*{email}" class="form-control" required />
-        </div>
-
-        <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" id="phone" th:field="*{phone}" class="form-control" pattern="[0-9]{8,15}" required />
-            <small class="form-text text-muted">8 to 15 digits</small>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add Customer</button>
+        <button type="submit" class="btn btn-primary">Save Order</button>
+        <a th:href="@{/orders}" class="btn btn-secondary ms-2">Cancel</a>
     </form>
 </div>
 

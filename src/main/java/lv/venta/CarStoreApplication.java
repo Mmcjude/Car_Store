@@ -56,8 +56,8 @@ public class CarStoreApplication {
 
             engineRepo.saveAll(Arrays.asList(camryEngine, amgEngine, x5Engine));
 
-            Customer bobby = new Customer("Bobby", "Brown", "123456-12345", "Riga", "bobby@example.com", "12345678");
-            Customer michael = new Customer("Michael", "Bay", "654321-54321", "Liepaja", "michael@example.com", "87654321");
+            Customer bobby = new Customer("Bobby", "Brown", "123456-12345", "Riga", "bobby@yahoo.com", "12345678");
+            Customer michael = new Customer("Michael", "Bay", "654321-54321", "Liepaja", "michael@gmail.com", "87654321");
 
             bobby = customerRepo.save(bobby);
             michael = customerRepo.save(michael);

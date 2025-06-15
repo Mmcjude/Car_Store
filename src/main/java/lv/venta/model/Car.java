@@ -57,7 +57,7 @@ public class Car extends BaseEntity {
         setManufacturer(manufacturer);
     }
 
-    // Add this getter to expose brand to Thymeleaf
+    // Added this getter to expose brand to Thymeleaf
     public String getBrand() {
         if (manufacturer != null) {
             return manufacturer.getBrand();

@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .formLogin(Customizer.withDefaults()) // enables /login
-            .httpBasic(Customizer.withDefaults()); // optional
+            .httpBasic(Customizer.withDefaults()); 
 
         return http.build();
     }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    // GET / - Display the homepage for CHan Export
+    // GET / - displays the homepage for my garage
     @GetMapping("/")
     public String homePage() {
         return "home"; 
